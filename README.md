@@ -3,8 +3,25 @@
 
 > Nestjs is a node.js backend framework built on top of Express with its strength in architecture.
 
-Unlike **Express.js**, its lightweight counterpart which is unopinionated on how stuff should be structured, **Nestjs** aims to build a *testable, scalable, and maintainable* application through modularity.
+Unlike **Express.js**, its lightweight counterpart which is unopinionated on how stuff should be structured, **Nestjs** aims to be a *platform-agnostic* framework for building a *testable, scalable, and maintainable* application through modularity.
 
 ---
 ## Getting Started
 Run `npm i -g @nestjs/cli`, then create new project with `nest new [project_name]`
+
+The initialization (termed *boostrap*) file can be found at `main.ts`, providing a HTTP listener on running `npm run start[:dev]` in terminal.
+
+![alt text](README_pics/main.png)
+
+---
+## Basic Concepts
+### Modules
+> A module is any class annotated with the `@Module()` decorator which Nest uses to organize the application structure.
+<img src="https://docs.nestjs.com/assets/Modules_1.png">
+*\* An application graph*
+
+Each applciation has a root module contained in `app.module.ts`
+
+The module decorator accepts an object with the following keys (explained later on):
+![alt text](README_pics/module.png)
+
