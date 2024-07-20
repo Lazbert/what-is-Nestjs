@@ -9,7 +9,7 @@ Unlike **Express.js**, its lightweight counterpart which is unopinionated on how
 ## Getting Started
 Run `npm i -g @nestjs/cli`, then create new project with `nest new [project_name]`
 
-The initialization (termed *boostrap*) file can be found at `main.ts`, providing a HTTP listener on running `npm run start[:dev]` in terminal.
+The initialization (termed *boostrap*) file can be found at `main.ts`, providing a HTTP listener at the specified port  upon running `npm run start[:dev]` in terminal.
 
 ![alt text](README_pics/main.png)
 
@@ -20,8 +20,9 @@ The initialization (termed *boostrap*) file can be found at `main.ts`, providing
 <img src="https://docs.nestjs.com/assets/Modules_1.png">
 *\* An application graph*
 
-Each applciation has a root module contained in `app.module.ts`
+Each applciation has a root module contained in `app.module.ts` which encapsulates all modularized features. This composition is reminiscent of 
 
 The module decorator accepts an object with the following keys (explained later on):
 ![alt text](README_pics/module.png)
 
+You can handily generate a module and import it in `app.module.ts` using the command `nest g module [module]`
