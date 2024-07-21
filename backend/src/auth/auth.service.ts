@@ -27,14 +27,16 @@ export class AuthService {
             hash,
           },
 
-          select: {
-            // select what fields to return - not very wise to return the hash
-            id: true,
-            email: true,
-            createdAt: true,
-          },
+          // select: {
+          //   // select what fields to return - not very wise to return the hash
+          //   id: true,
+          //   email: true,
+          //   createdAt: true,
+          // },
         });
-      // return new user
+
+      // return new user without hash
+      delete user.hash;
       return user;
     } catch (error) {
       if (
@@ -51,7 +53,36 @@ export class AuthService {
       throw error;
     }
   }
-  signIn() {
-    return { message: 'I am signed in' };
+  async signIn(authDto: AuthDto) {
+    // find user by email (unique field)
+    // if user does not exist throw exception
+    const user =
+      await this.prismaService.user.findUnique({
+        where: {
+          email: authDto.email,
+        },
+      });
+
+    if (!user) {
+      throw new ForbiddenException(
+        'Credentials incorrect',
+      );
+    }
+
+    // if user exists, compare password
+    // throw exception if password incorrect
+    const passwordMatches = await argon.verify(
+      user.hash,
+      authDto.password,
+    );
+    if (!passwordMatches) {
+      throw new ForbiddenException(
+        'Credentials incorrect',
+      );
+    }
+
+    // return user
+    delete user.hash;
+    return user;
   }
 }
