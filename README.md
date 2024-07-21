@@ -4,7 +4,8 @@
    <br/> a. [PostgresSQL setup](#postgressql-setup)
 2. [Basic Concepts](#basic-concepts)
    <br/>a. [Modules](#modules)
-   <br/>b. [Controllers](#controllers)
+   <br/>b. [Pipes](#pipes)
+   <br/>c. [Controllers](#controllers)
 
 > Nestjs is a node.js backend framework built on top of Express with its strength in architecture.
 
@@ -19,6 +20,8 @@ Run `npm i -g @nestjs/cli`, then create new project with `nest new [project_name
 The initialization (termed _boostrap_) file can be found at `main.ts`, providing a HTTP listener at the specified port upon running `npm run start[:dev]` in terminal.
 
 ![alt text](README_pics/main.png)
+
+Data valiation libraries providing Pydantic functionalities: `yarn add class-validator class-transformer`
 
 ### PostgresSQL setup
 
@@ -55,6 +58,10 @@ If other modules wish to use the provider of this module, then this module must 
 2. Add the `@Global()` decorator to the provider and be imported by `app.module.ts`
 
 You can handily generate a module and import it in `app.module.ts` using the command `nest g module [module]`. Module files by themselves do not contain the actual functionality. Instead, they are **containers** serving code organization and reusability.
+
+### Pipes
+
+> Pipes are injectable functions that serves to **transform and validate** data before a method is invoked
 
 ### Controllers
 
