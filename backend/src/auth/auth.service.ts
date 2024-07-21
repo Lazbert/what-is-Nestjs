@@ -17,22 +17,20 @@ export class AuthService {
     private configService: ConfigService,
   ) {}
 
-  signToken(
+  async signToken(
     userId: number,
     email: string,
-  ): { access_token: Promise<string> } {
+  ): Promise<{ access_token: string }> {
     const payload = {
       sub: userId, // sub is the JWT convention of denoting a unique field
       email: email,
     };
-    const jwtToken = this.jwtService.signAsync(
-      payload,
-      {
+    const jwtToken =
+      await this.jwtService.signAsync(payload, {
         expiresIn: '15m',
         secret:
           this.configService.get('JWT_SECRET'),
-      },
-    );
+      });
     return {
       access_token: jwtToken,
     };
@@ -62,7 +60,10 @@ export class AuthService {
         });
 
       // return JWT token
-      return this.signToken(user.id, user.email);
+      return await this.signToken(
+        user.id,
+        user.email,
+      );
     } catch (error) {
       if (
         error instanceof
@@ -107,6 +108,9 @@ export class AuthService {
     }
 
     // return JWT token
-    return this.signToken(user.id, user.email);
+    return await this.signToken(
+      user.id,
+      user.email,
+    );
   }
 }
