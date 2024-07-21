@@ -2,6 +2,7 @@
 
 1. [Getting Started](#getting-started)
    <br/> a. [PostgresSQL setup](#postgressql-setup)
+   <br/> b. [Quality of Life Libraries](#quality-of-life-libraries)
 2. [Basic Concepts](#basic-concepts)
    <br/>a. [Modules](#modules)
    <br/>b. [Pipes](#pipes)
@@ -21,10 +22,6 @@ The initialization (termed _boostrap_) file can be found at `main.ts`, providing
 
 ![alt text](README_pics/main.png)
 
-Data valiation libraries providing Pydantic functionalities: `yarn add class-validator class-transformer`
-
-Password hashing: `yarn add argon2`
-
 ### PostgresSQL setup
 
 We will configure `docker-compose.yml` to use multiple containers for the database, which will be available on port 5434.
@@ -42,7 +39,20 @@ npx prisma studio  # visual editor for database
 
 The generated `schema.prisma` is where you declare the data representations. Remember to change the connection string with your credentials in `docker-compose.yml`. On running `npx prisma migrate dev`, the schema will be translated into SQL & **importable TypeScript types from "@prisma/client"** (recall _codegen_ for GraphQL)
 
----
+### Quality of Life Libraries
+
+- Data valiation libraries providing Pydantic functionalities: `yarn add class-validator class-transformer`
+
+- Password hashing: `yarn add argon2`
+
+- Config module for env: `yarn add @nestjs/config`
+
+- JWT authentication:
+
+```command
+yarn add @nestjs/passport passport @nestjs/jwt passport-jwt
+yarn add -D @types/passport-jwt
+```
 
 ## Basic Concepts
 
