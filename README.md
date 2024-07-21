@@ -23,6 +23,8 @@ The initialization (termed _boostrap_) file can be found at `main.ts`, providing
 
 Data valiation libraries providing Pydantic functionalities: `yarn add class-validator class-transformer`
 
+Password hashing: `yarn add argon2`
+
 ### PostgresSQL setup
 
 We will configure `docker-compose.yml` to use multiple containers for the database, which will be available on port 5434.
@@ -35,6 +37,7 @@ yarn add -D prisma
 yarn add @prisma/client
 
 npx prisma init  # generate schema & default connection string in .env
+npx prisma studio  #
 ```
 
 The generated `schema.prisma` is where you declare the data representations. Remember to change the connection string with your credentials in `docker-compose.yml`. On running `npx prisma migrate dev`, the schema will be translated into SQL & **importable TypeScript types from "@prisma/client"** (recall _codegen_ for GraphQL)
