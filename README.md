@@ -37,7 +37,7 @@ yarn add -D prisma
 yarn add @prisma/client
 
 npx prisma init  # generate schema & default connection string in .env
-npx prisma studio  #
+npx prisma studio  # visual editor for database
 ```
 
 The generated `schema.prisma` is where you declare the data representations. Remember to change the connection string with your credentials in `docker-compose.yml`. On running `npx prisma migrate dev`, the schema will be translated into SQL & **importable TypeScript types from "@prisma/client"** (recall _codegen_ for GraphQL)
