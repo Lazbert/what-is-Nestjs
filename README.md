@@ -49,6 +49,10 @@ Each applciation has a root module contained in `app.module.ts` which encapsulat
 
 The module decorator accepts an object with the following keys (explained later on):
 ![alt text](README_pics/module.png)
+If other modules wish to use the provider of this module, then this module must export that provider (`exports: [ModuleService]`) **and** either:
+
+1. Be imported by other modules.
+2. Add the `@Global()` decorator to the provider and be imported by `app.module.ts`
 
 You can handily generate a module and import it in `app.module.ts` using the command `nest g module [module]`. Module files by themselves do not contain the actual functionality. Instead, they are **containers** serving code organization and reusability.
 
